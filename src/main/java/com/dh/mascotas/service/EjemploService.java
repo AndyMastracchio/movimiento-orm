@@ -10,15 +10,16 @@ import java.util.List;
 @Service
 public class EjemploService {
 
+    private final MovimientoRepository repository;
+
     @Autowired
-    MovimientoRepository repository;
+    public EjemploService(MovimientoRepository repository) {
+        this.repository = repository;
+    }
 
     public String save(Movimiento m){
-        if(repository.save(m) != null){
-            return "OK";
-        }else{
-            return null;
-        }
+        repository.save(m);
+        return "OK";
     }
 
     public List<Movimiento> obtenerTodos(){

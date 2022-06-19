@@ -1,17 +1,26 @@
 package com.dh.mascotas.persistence.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "movimiento")
 public class Movimiento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column
+    @Column(name = "DESC")
     private String descripcion;
-    @Column
+    @Column(name = "MONTO")
     private String monto;
 
     public Integer getId() {

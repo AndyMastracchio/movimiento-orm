@@ -8,19 +8,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/movimientos")
 public class MovimientoController {
 
-    @Autowired
-    EjemploService service;
+    private final EjemploService service;
 
-    @PostMapping("/crear")
+    @Autowired
+    public MovimientoController(EjemploService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/new")
     public ResponseEntity<String> crear(@RequestBody Movimiento movimiento){
         ResponseEntity<String> respuesta;
 
-        if(service.save(movimiento) != null){
+        if(Objects.nonNull(service.save(movimiento))){
             respuesta = ResponseEntity.ok("El movimiento fue registrado con éxito");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Mmmm... me parece que algo salió mal...");
@@ -28,7 +33,7 @@ public class MovimientoController {
         return respuesta;
     }
 
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<List<Movimiento>> consultarTodos(){
         return ResponseEntity.ok(service.obtenerTodos());
     }
