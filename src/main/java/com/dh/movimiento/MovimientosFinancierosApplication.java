@@ -1,4 +1,4 @@
-package com.dh.mascotas;
+package com.dh.movimiento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
